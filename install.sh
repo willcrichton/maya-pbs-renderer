@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Maya installation script for CentOS/RHEL. Uses network, not standalone, licenses.
 
 # Download the most recent version of Maya for Linux (if there's a service pack available, choose
