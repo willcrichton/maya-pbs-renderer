@@ -1,8 +1,19 @@
 #!/bin/bash
-#PBS -l ncpus=8
-#PBS -l pmem=8gb
-#PBS -l nodes=compute-0-5+compute-0-7+compute-0-9+compute-0-11+compute-0-13+compute-0-15+compute-0-17+compute-0-19+compute-0-21+compute-0-23+compute-0-25+compute-0-27+compute-0-29
+
+#PBS -j oe
+#PBS -l nodes=compute-0-5+compute-0-7+compute-0-9+compute-0-11
+#PBS -l pmem=12gb
 #PBS -l walltime={walltime}
 #PBS -N maya_render_{index}
 
-/usr/autodesk/maya/bin/Render -r mr -s {start} -e {end} {args} {file} 
+export MAYA_DISABLE_CIP=1
+time /usr/autodesk/maya/bin/Render \
+     -r mr \
+     -of jpg \
+     -fnc 3 \
+     -rd {output} \
+     -s {start} \
+     -e {end} \
+     -proj {project} \
+     {args} \
+     {scene}
