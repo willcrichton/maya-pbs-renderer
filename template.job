@@ -1,19 +1,22 @@
 #!/bin/bash
 
-#PBS -j oe
-#PBS -l nodes=compute-0-5+compute-0-7+compute-0-9+compute-0-11
-#PBS -l pmem=12gb
+#PBS -q kayvon
+#PBS -l nodes=1:tesla:ppn=12
 #PBS -l walltime={walltime}
 #PBS -N maya_render_{index}
 
 export MAYA_DISABLE_CIP=1
 time /usr/autodesk/maya/bin/Render \
-     -r mr \
-     -of jpg \
-     -fnc 3 \
-     -rd {output} \
-     -s {start} \
-     -e {end} \
-     -proj {project} \
-     {args} \
-     {scene}
+    -r mr \
+    -of jpg \
+    -fnc 3 \
+    -rd {output} \
+    -s {start} \
+    -e {end} \
+    -b {skip} \
+    -skipExistingFrames true \
+    -proj {project} \
+    -x 1280 \
+    -y 720 \
+    {args} \
+    {scene}
